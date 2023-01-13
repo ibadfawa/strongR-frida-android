@@ -98,7 +98,8 @@ jobs:
     - name: build frida for Android
       shell: bash
       run: |
-        
+        git config --global user.email "ibadfawa@gmail.com"
+        git config --global user.name "ibadfawa"
         export ANDROID_NDK_ROOT=${{ steps.setup-ndk.outputs.ndk-path }}
         git clone --recurse-submodules https://github.com/frida/frida
         git clone https://github.com/ibadfawa/strongR-frida-android
