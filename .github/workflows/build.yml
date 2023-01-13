@@ -98,7 +98,7 @@ jobs:
       id: setup-ndk
       uses: nttld/setup-ndk@v1.0.6
       with:
-        ndk-version: r25b
+        ndk-version: r25
 
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
@@ -119,14 +119,13 @@ jobs:
         git clone ${{ secrets.PATCH_REPO }}
         export ANDROID_NDK_ROOT=${{ steps.setup-ndk.outputs.ndk-path }}
         git clone --recurse-submodules https://github.com/frida/frida
+        git clone https://github.com/ibadfawa/strongR-frida-android
         cd frida/frida-core
-        git am ../../Patchs/strongR-frida/frida-core/*.patch
+        git am ../img/*.patch
         cd ../
-        make core-android-arm
+        
         make core-android-arm64
-        make core-android-x86
-        make core-android-x86_64
-
+        
 
     - name: Check release version
       id: checkReleaseVersion
